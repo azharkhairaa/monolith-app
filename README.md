@@ -1,6 +1,12 @@
 # Refactor `monolith_app` — Memisahkan Domain, Storage, dan Interface
 
-**Universitas Cakrawala** · **Muhammad Azhar Khaira** — 25120300010
+**Universitas Cakrawala** · **Tugas Kelompok**
+
+Anggota Kelompok:
+- HALIMAH SUKMAWATY — 25120300037
+- KEVIN APRIANTO — 25120300004
+- RIDHO MARWANSYAH — 25120300020
+- MUHAMMAD AZHAR KHAIRA — 25120300010
 
 Titik awal: satu berkas `app.py` (62 baris) yang mencampur tiga tanggung jawab — aturan bisnis,
 penyimpanan berkas JSON, dan antarmuka terminal. Hasil akhir: enam module (plus satu titik masuk)
