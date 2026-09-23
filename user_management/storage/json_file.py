@@ -1,9 +1,4 @@
-"""Adapter penyimpanan berkas JSON.
-
-Satu-satunya modul yang tahu bahwa data disimpan sebagai berkas JSON dan tahu
-nama-nama kuncinya. Kalau format penyimpanan berganti, hanya berkas ini yang
-ditulis ulang.
-"""
+"""Adapter penyimpanan berkas JSON."""
 
 from __future__ import annotations
 
@@ -15,7 +10,7 @@ from user_management.domain import User
 
 
 class JsonFileUserRepository:
-    """Menyimpan user pada satu berkas JSON berisi array objek."""
+    """Menyimpan user pada berkas JSON."""
 
     def __init__(self, path: Union[str, Path]) -> None:
         self._path = Path(path)
@@ -41,10 +36,10 @@ class JsonFileUserRepository:
 
 
 def _to_user(row: Dict[str, Any]) -> User:
-    """JSON -> domain. Pemetaan ini sengaja hanya ada di adapter."""
+    """Mapping JSON ke entitas User."""
     return User(name=row["name"], email=row["email"], id=row.get("id"))
 
 
 def _to_row(user: User) -> Dict[str, Any]:
-    """Domain -> JSON, dengan urutan kunci mengikuti isi ``users.json``."""
+    """Mapping entitas User ke JSON."""
     return {"id": user.id, "name": user.name, "email": user.email}

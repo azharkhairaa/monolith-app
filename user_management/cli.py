@@ -1,8 +1,4 @@
-"""Lapisan antarmuka: menerjemahkan terminal ke pemanggilan use case.
-
-Modul ini hanya boleh mengurus tiga hal: mengambil masukan, memformat keluaran,
-dan menentukan kode keluar. Tidak ada aturan bisnis dan tidak ada akses berkas.
-"""
+"""Antarmuka CLI."""
 
 from __future__ import annotations
 
@@ -25,11 +21,7 @@ def run(
     read_line: Callable[[str], str] = input,
     write_line: Callable[[str], None] = print,
 ) -> int:
-    """Menjalankan alur 'tambah user' satu kali; mengembalikan kode keluar.
-
-    ``read_line`` dan ``write_line`` disuntikkan supaya alur ini bisa diuji
-    tanpa stdin/stdout sungguhan.
-    """
+    """Alur pendaftaran user."""
     name = read_line("Name: ")
     email = read_line("Email: ")
 

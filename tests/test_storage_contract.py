@@ -1,10 +1,4 @@
-"""Kontrak bersama semua adapter penyimpanan.
-
-Seluruh test di berkas ini dijalankan dua kali: sekali untuk adapter berkas
-JSON, sekali untuk adapter memori. Kalau nanti ada adapter baru (SQLite, API),
-cukup tambahkan satu baris pada fixture di bawah — kalau adapter itu lolos,
-``UserService`` dijamin tetap bekerja tanpa diubah.
-"""
+"""Uji kontrak semua adapter penyimpanan."""
 
 import pytest
 

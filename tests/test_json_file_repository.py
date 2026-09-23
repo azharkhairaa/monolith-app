@@ -1,4 +1,4 @@
-"""Uji khusus adapter berkas JSON: hal-hal yang memang soal berkas."""
+"""Uji adapter berkas JSON."""
 
 import json
 
@@ -40,7 +40,7 @@ def test_bentuk_berkas_hasil_tulis_sesuai_format_users_json(tmp_path):
     assert json.loads(path.read_text(encoding="utf-8")) == [
         {"id": 1, "name": "Alice", "email": "alice@example.com"}
     ]
-    # Tetap indent=2 seperti kode awal, supaya diff users.json tetap terbaca.
+    # Pastikan format indent=2.
     assert path.read_text(encoding="utf-8").startswith('[\n  {\n    "id": 1')
 
 

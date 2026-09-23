@@ -1,4 +1,4 @@
-"""Uji aturan bisnis murni — tanpa berkas, tanpa mock, tanpa tmp_path."""
+"""Uji aturan bisnis murni."""
 
 import pytest
 
@@ -14,14 +14,12 @@ from user_management.domain import (
 
 
 def test_validate_user_merapikan_spasi_dan_huruf_besar():
-    # Turunan langsung dari test_validate_user() pada kode awal.
     user = validate_user(" Alice ", "ALICE@example.com")
 
     assert user == User(name="Alice", email="alice@example.com", id=None)
 
 
 def test_email_tanpa_at_ditolak():
-    # Turunan langsung dari test_invalid_email() pada kode awal.
     with pytest.raises(ValidationError) as error:
         validate_user("Alice", "invalid-email")
 
@@ -37,7 +35,7 @@ def test_nama_kosong_ditolak(nama_kosong):
 
 
 def test_error_domain_tetap_bisa_ditangkap_sebagai_value_error():
-    # Jaring pengaman kompatibilitas: pemanggil lama menulis `except ValueError`.
+    # Jaring pengaman kompatibilitas ValueError.
     with pytest.raises(ValueError):
         validate_user("", "alice@example.com")
 

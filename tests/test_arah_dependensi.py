@@ -1,10 +1,4 @@
-"""Menjaga arah panah dependensi antar-module.
-
-Aturan pembagian module gampang rusak diam-diam: satu ``import`` yang
-kelihatannya praktis sudah cukup membuat domain kembali terikat ke berkas.
-Test ini membaca ``import`` tiap module dengan ``ast`` dan menolak panah yang
-arahnya keluar.
-"""
+"""Uji arah dependensi antar-module."""
 
 import ast
 from pathlib import Path
@@ -14,7 +8,7 @@ import pytest
 ROOT = Path(__file__).resolve().parents[1]
 PAKET = "user_management"
 
-# Module -> daftar module internal yang boleh diimpor.
+# Aturan impor module internal.
 IZIN = {
     "user_management.domain": set(),
     "user_management.ports": {"user_management.domain"},
@@ -34,7 +28,7 @@ def _nama_module(path: Path) -> str:
 
 
 def _import_internal(path: Path) -> set:
-    """Nama module internal yang diimpor berkas ini (diabaikan: pustaka standar)."""
+    """Mencari import module internal."""
     pohon = ast.parse(path.read_text(encoding="utf-8"))
     hasil = set()
 
@@ -45,9 +39,7 @@ def _import_internal(path: Path) -> set:
             hasil.add(simpul.module)
             hasil.update(f"{simpul.module}.{alias.name}" for alias in simpul.names)
 
-    # `from user_management import domain` membuat AST mencatat paket induknya
-    # juga; paket induk sendiri tidak membawa dependensi apa pun (__init__.py
-    # kosong dari import), jadi yang dinilai hanya module di dalamnya.
+    # Mengabaikan import paket induk yang kosong.
     return {nama for nama in hasil if nama.startswith(PAKET + ".")}
 
 
@@ -86,5 +78,5 @@ def test_hanya_main_yang_memilih_adapter_konkret():
 
 
 def test_seluruh_module_terdaftar_pada_aturan():
-    # Supaya module baru tidak lolos tanpa aturan arah dependensi.
+    # Validasi kelengkapan aturan.
     assert {_nama_module(path) for path in MODULE} == set(IZIN)

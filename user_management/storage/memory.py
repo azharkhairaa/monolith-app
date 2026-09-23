@@ -1,9 +1,4 @@
-"""Adapter penyimpanan di memori.
-
-Dipakai oleh test (dan berguna untuk mencoba aplikasi tanpa menyentuh berkas).
-Keberadaannya adalah bukti bahwa ``service`` benar-benar lepas dari berkas:
-kalau masih terikat, adapter ini tidak akan bisa menggantikannya.
-"""
+"""Adapter penyimpanan di memori."""
 
 from __future__ import annotations
 
@@ -19,8 +14,7 @@ class InMemoryUserRepository:
         self._users: List[User] = list(users) if users else []
 
     def list_all(self) -> List[User]:
-        # Salinan, supaya pemanggil tidak bisa mengubah isi penyimpanan
-        # lewat list yang dikembalikan.
+        # Salinan agar immutable.
         return list(self._users)
 
     def add(self, user: User) -> None:

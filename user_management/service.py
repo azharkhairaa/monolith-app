@@ -1,8 +1,4 @@
-"""Use case (lapisan aplikasi): merangkai aturan domain dengan penyimpanan.
-
-Modul ini tahu *urutan langkah* sebuah use case, tapi tidak tahu aturan
-bisnisnya (ada di ``domain``) maupun cara menyimpannya (ada di ``storage``).
-"""
+"""Lapisan use case (aplikasi)."""
 
 from __future__ import annotations
 
@@ -14,11 +10,7 @@ from user_management.ports import UserRepository
 
 
 class UserService:
-    """Pintu masuk seluruh use case user.
-
-    Penyimpanan disuntikkan lewat konstruktor (*dependency injection*), jadi
-    kelas ini tidak pernah menentukan sendiri ke mana data ditulis.
-    """
+    """Service untuk use case user."""
 
     def __init__(self, repository: UserRepository) -> None:
         self._repository = repository

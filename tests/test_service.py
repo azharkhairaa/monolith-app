@@ -1,4 +1,4 @@
-"""Uji use case dengan penyimpanan di memori — tidak menyentuh berkas sama sekali."""
+"""Uji use case dengan penyimpanan memori."""
 
 import pytest
 
@@ -42,7 +42,7 @@ def test_email_duplikat_ditolak_dan_tidak_ikut_tersimpan(service, repository):
 
 def test_masukan_tidak_valid_tidak_menyentuh_penyimpanan(repository):
     class RepositoryYangMenolakTulis:
-        """Merekam pemanggilan; sengaja meledak kalau `add` dipanggil."""
+        """Mock repository yang menolak tulis."""
 
         def __init__(self):
             self.pemanggilan = []

@@ -1,4 +1,4 @@
-"""Uji lapisan antarmuka tanpa stdin/stdout sungguhan."""
+"""Uji antarmuka CLI."""
 
 from user_management.cli import EXIT_INVALID_INPUT, EXIT_OK, run
 from user_management.domain import User
@@ -7,7 +7,7 @@ from user_management.storage.memory import InMemoryUserRepository
 
 
 class TerminalPalsu:
-    """Pengganti input()/print() yang merekam apa yang diminta dan dicetak."""
+    """Mock untuk input() dan print()."""
 
     def __init__(self, jawaban):
         self._jawaban = list(jawaban)
